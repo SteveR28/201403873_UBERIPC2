@@ -1,0 +1,60 @@
+create table Usuario(
+DPI numeric(8,0) primary key,
+Nombre nvarchar(35) not null,
+Destino nvarchar(35) not null,
+Direccion nvarchar(35) not null,
+);
+create table Uber_carro(
+Cod_u numeric(8,0) primary key,
+Nombre nvarchar(35) not null,
+Descripcion text not null,
+);
+create table Conductor(
+Cod_Conduc numeric(8,0) primary key,
+Nombre nvarchar(35) not null,
+Edad nvarchar(35) not null,
+Profesion nvarchar(35) not null,
+Experiencia nvarchar(35) not null,
+);
+create table Detalle(
+Cod_Detalle numeric(8,0) primary key,
+Nombre nvarchar(35) not null,
+Tipo nvarchar(35) not null,
+Capacidad nvarchar(35) not null,
+Descripcion text not null,
+Cod_u numeric(8,0) not null,
+Foreign key(Cod_u) References Uber_carro(Cod_u)
+);
+create table Asignacion(
+Cod_Asig numeric(8,0) primary key,
+Precio numeric(8,0) not null,
+Descripcion text not null,
+DPI numeric(8,0) not null,
+Cod_u numeric(8,0) not null,
+Cod_Conduc numeric(8,0) not null,
+Foreign key(DPI) References Usuario(DPI),
+Foreign key(Cod_u) References Uber_carro(Cod_u),
+Foreign key(Cod_Conduc) References Conductor(Cod_Conduc)
+);
+
+create table Asociado(
+Cod_Aso numeric(8,0) primary key,
+Nombre nvarchar(35) not null,
+tipo nvarchar(25) not null,
+Descripcion text not null,
+Cod_u numeric(8,0) not null,
+Foreign key(Cod_u) References Uber_carro(Cod_u),
+);
+
+--AGREGAR
+ALTER TABLE Usuario
+ADD PruebaAlter1 text;
+--MODIFICAR
+ALTER TABLE Usuario
+ALTER COLUMN Nombre numeric;
+--CONSTRAINT
+Create table nuevo(
+nuevo1 nvarchar(40) unique,
+nuevo2 numeric(8,0) not null,
+nuevo3 numeric(8,0) primary key,
+);
